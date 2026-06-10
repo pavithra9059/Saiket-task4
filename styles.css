@@ -1,0 +1,358 @@
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Light Mode (Default) */
+        :root {
+            --bg-gradient: linear-gradient(45deg, #ff0066, #ff6600, #ffcc00, #00ccff, #9900ff);
+            --card-bg: rgba(0, 0, 0, 0.35);
+            --text-primary: #ffffff;
+            --text-secondary: #FFEAA7;
+            --input-bg: rgba(30, 20, 45, 0.7);
+            --input-border: rgba(255,200,100,0.6);
+            --label-color: #FFF5E6;
+            --btn-submit: linear-gradient(125deg, #ff0066, #ff6600, #ffcc00);
+            --btn-reset: linear-gradient(125deg, #44aaff, #aa44ff);
+            --glass-border: 1px solid rgba(255,255,255,0.5);
+            --shadow-color: rgba(255,0,150,0.5);
+        }
+
+        /* Dark Mode */
+        body.dark {
+            --bg-gradient: linear-gradient(45deg, #1a0033, #2d004d, #1a0033, #0d0026, #2d004d);
+            --card-bg: rgba(10, 10, 20, 0.85);
+            --text-primary: #e0e0ff;
+            --text-secondary: #c9b6ff;
+            --input-bg: rgba(20, 15, 35, 0.9);
+            --input-border: rgba(150, 100, 255, 0.7);
+            --label-color: #d9c8ff;
+            --btn-submit: linear-gradient(125deg, #9b59b6, #e74c3c, #f39c12);
+            --btn-reset: linear-gradient(125deg, #3498db, #8e44ad);
+            --glass-border: 1px solid rgba(255,255,255,0.2);
+            --shadow-color: rgba(155, 89, 182, 0.6);
+        }
+
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientFlow 12s ease infinite;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.4s ease;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,100,150,0.4));
+            border-radius: 50%;
+            animation: floatParticle 8s infinite alternate ease-in-out;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            100% { transform: translateY(-80px) rotate(360deg); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Ultra Colorful Glass Card */
+        .form-glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 3rem;
+            padding: 2.5rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.2), 0 0 20px var(--shadow-color);
+            transition: all 0.4s;
+            border: var(--glass-border);
+        }
+        .form-glass:hover {
+            box-shadow: 0 35px 70px rgba(0,0,0,0.5), 0 0 0 3px rgba(255,200,100,0.6), 0 0 35px #ff44cc;
+        }
+
+        /* Header with title and theme toggle */
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFE6B0, #FF9A9E, #A0FFE0, #FFB3FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255,200,0,0.3);
+        }
+        .title-section p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Neon Toggle Button */
+        .theme-toggle {
+            background: linear-gradient(145deg, #ff44aa, #ffaa44);
+            border: none;
+            border-radius: 3rem;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+            box-shadow: 0 0 12px #ff44aa;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #ffaa44;
+        }
+
+        /* Progress Bar - Rainbow */
+        .progress-section {
+            margin-bottom: 2rem;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-weight: bold;
+            text-shadow: 0 0 3px #ff66aa;
+        }
+        .progress-bar-bg {
+            background: rgba(0,0,0,0.4);
+            border-radius: 30px;
+            height: 14px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px #000;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff0066, #ff6600, #ffcc00, #00ffcc, #ff00ff);
+            background-size: 200% 100%;
+            animation: rainbowMove 2s linear infinite;
+            border-radius: 30px;
+            transition: width 0.4s ease;
+        }
+        @keyframes rainbowMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        label {
+            font-weight: 700;
+            color: var(--label-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            text-shadow: 0 0 3px rgba(0,0,0,0.3);
+        }
+        label i {
+            font-size: 1.2rem;
+            filter: drop-shadow(0 0 5px #ffaa44);
+        }
+        input, select, textarea {
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 1.2rem;
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.25s;
+            outline: none;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #ffcc44;
+            box-shadow: 0 0 0 4px rgba(255,204,68,0.4), 0 0 15px #ff44aa;
+            transform: scale(1.01);
+            background: rgba(0,0,0,0.5);
+        }
+        .password-wrapper {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #ffcc88;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .toggle-password:hover { color: #ff66cc; text-shadow: 0 0 5px; }
+        
+        /* Checkbox & Radio colorful */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .checkbox-group label {
+            background: rgba(255,100,150,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: 0.2s;
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .checkbox-group label:hover { background: #ff66aa55; transform: scale(1.02);}
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .radio-group label {
+            background: rgba(0,255,200,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #ff44cc;
+            box-shadow: none;
+            margin-right: 8px;
+        }
+        .error-msg {
+            font-size: 0.75rem;
+            color: #FFB347;
+            margin-top: 4px;
+            font-weight: bold;
+            text-shadow: 0 0 2px black;
+        }
+        .char-counter {
+            font-size: 0.7rem;
+            text-align: right;
+            color: var(--text-secondary);
+        }
+        /* BUTTONS GLOW */
+        .button-group {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 3rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            flex: 1;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .btn-submit {
+            background: var(--btn-submit);
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 5px 20px rgba(255,0,100,0.6);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%;}
+            100% { background-position: 100% 50%;}
+        }
+        .btn-submit:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 35px #ff44aa;
+        }
+        .btn-reset {
+            background: var(--btn-reset);
+            color: white;
+            box-shadow: 0 5px 15px #aa44ff;
+        }
+        .btn-reset:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px #ff44ff;
+        }
+        /* Toast success Rainbow */
+        .toast-success {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00c6ff, #ff44cc, #ffaa00);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(450px);
+            transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+        .toast-success.show {
+            transform: translateX(0);
+        }
+        @media (max-width: 750px) {
+            .input-row { grid-template-columns: 1fr; gap: 1rem; }
+            .form-glass { padding: 1.5rem; }
+            .checkbox-group { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+            .checkbox-group label { white-space: normal; text-align: center; }
+            .title-section h1 { font-size: 1.5rem; }
+        }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #2d1b3a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(#ff44aa, #ffaa44); border-radius: 10px; }
+        
+        ::placeholder { color: #ffddaa; opacity: 0.7; }
+    
